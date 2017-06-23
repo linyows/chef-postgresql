@@ -3,10 +3,10 @@
 # Recipe:: setup_extensions
 #
 
-include_recipe "postgresql::contrib"
+include_recipe "postgres::contrib"
 
 # setup database extensions
-node["postgresql"]["extensions"].each do |ext|
+node["postgres"]["extensions"].each do |ext|
   ext_action = (ext["action"] || "create").to_sym
 
   postgresql_extension ext["name"] do

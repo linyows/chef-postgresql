@@ -4,7 +4,7 @@
 #
 
 # setup users
-node["postgresql"]["users"].each do |user|
+node["postgres"]["users"].each do |user|
   postgresql_user user["username"] do
     superuser user["superuser"]
     createdb  user["createdb"]

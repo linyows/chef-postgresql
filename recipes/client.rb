@@ -5,4 +5,4 @@
 
 include_recipe "postgresql"
 
-package "postgresql-client-#{node["postgresql"]["version"]}"
+package "postgresql-client-#{node["postgres"]["version"]}"

@@ -3,8 +3,8 @@
 # Recipe:: configuration
 #
 
-pg_version = node["postgresql"]["version"]
-restart_action = node["postgresql"]["cfg_update_action"].to_sym
+pg_version = node["postgres"]["version"]
+restart_action = node["postgres"]["cfg_update_action"].to_sym
 
 directory "/etc/postgresql/#{pg_version}/main/" do
   owner  "postgres"
@@ -31,7 +31,7 @@ template "/etc/postgresql/#{pg_version}/main/pg_ctl.conf" do
 end
 
 # pg_hba
-template node["postgresql"]["hba_file"] do
+template node["postgres"]["hba_file"] do
   source "pg_hba.conf.erb"
   owner  "postgres"
   group  "postgres"
@@ -41,7 +41,7 @@ template node["postgresql"]["hba_file"] do
 end
 
 # pg_ident
-template node["postgresql"]["ident_file"] do
+template node["postgres"]["ident_file"] do
   source "pg_ident.conf.erb"
   owner  "postgres"
   group  "postgres"
@@ -51,9 +51,9 @@ template node["postgresql"]["ident_file"] do
 end
 
 # postgresql
-if node["postgresql"]["conf_custom"]
+if node["postgres"]["conf_custom"]
   file "/etc/postgresql/#{pg_version}/main/postgresql.conf" do
-    content node["postgresql"]["conf"].map { |k, v| "#{k} = '#{v}'" }.join("\n")
+    content node["postgres"]["conf"].map { |k, v| "#{k} = '#{v}'" }.join("\n")
     owner  "postgres"
     group  "postgres"
     mode   "0644"

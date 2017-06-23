@@ -41,7 +41,7 @@ action :drop do
 end
 
 def load_current_resource
-  @current_resource = Chef::Resource::PostgresqlExtension.new(new_resource.name)
+  @current_resource = Chef::Resource::PostgresExtension.new(new_resource.name)
   @current_resource.name(new_resource.name)
 
   @current_resource.exists = extension_exists?

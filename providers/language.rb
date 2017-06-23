@@ -44,7 +44,7 @@ action :drop do
 end
 
 def load_current_resource
-  @current_resource = Chef::Resource::PostgresqlLanguage.new(new_resource.name)
+  @current_resource = Chef::Resource::PostgresLanguage.new(new_resource.name)
   @current_resource.name(new_resource.name)
 
   @current_resource.exists = language_exists?

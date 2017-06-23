@@ -4,22 +4,22 @@
 #
 
 # ensure data directory exists
-directory node["postgresql"]["data_directory"] do
+directory node["postgres"]["data_directory"] do
   owner  "postgres"
   group  "postgres"
   mode   "0700"
   recursive true
-  not_if { ::File.exist?("#{node["postgresql"]["data_directory"]}/PG_VERSION") }
+  not_if { ::File.exist?("#{node["postgres"]["data_directory"]}/PG_VERSION") }
 end
 
 # initialize the data directory if necessary
 bash "postgresql initdb" do
   user "postgres"
   code <<-EOC
-  /usr/lib/postgresql/#{node["postgresql"]["version"]}/bin/initdb \
-    #{node["postgresql"]["initdb_options"]} \
+  /usr/lib/postgresql/#{node["postgres"]["version"]}/bin/initdb \
+    #{node["postgres"]["initdb_options"]} \
     -U postgres \
-    -D #{node["postgresql"]["data_directory"]}
+    -D #{node["postgres"]["data_directory"]}
   EOC
-  not_if { ::File.exist?("#{node["postgresql"]["data_directory"]}/PG_VERSION") }
+  not_if { ::File.exist?("#{node["postgres"]["data_directory"]}/PG_VERSION") }
 end

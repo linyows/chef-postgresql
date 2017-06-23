@@ -4,7 +4,7 @@
 #
 
 # setup database languages
-node["postgresql"]["languages"].each do |lang|
+node["postgres"]["languages"].each do |lang|
   lang_action = (lang["action"] || "create").to_sym
 
   postgresql_language lang["name"] do

@@ -13,25 +13,25 @@ file "/usr/sbin/policy-rc.d" do
 end
 
 # install the package
-package "postgresql-#{node["postgresql"]["version"]}"
+package "postgresql-#{node["postgres"]["version"]}"
 
 # setup the data directory
-include_recipe "postgresql::data_directory"
+include_recipe "postgres::data_directory"
 
 # add the configuration
-include_recipe "postgresql::configuration"
+include_recipe "postgres::configuration"
 
 # declare the system service
-include_recipe "postgresql::service"
+include_recipe "postgres::service"
 
 # setup users
-include_recipe "postgresql::setup_users"
+include_recipe "postgres::setup_users"
 
 # setup databases
-include_recipe "postgresql::setup_databases"
+include_recipe "postgres::setup_databases"
 
 # setup extensions
-include_recipe "postgresql::setup_extensions"
+include_recipe "postgres::setup_extensions"
 
 # setup languages
-include_recipe "postgresql::setup_languages"
+include_recipe "postgres::setup_languages"

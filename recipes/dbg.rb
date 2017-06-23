@@ -5,4 +5,4 @@
 
 include_recipe "postgresql"
 
-package "postgresql-#{node["postgresql"]["version"]}-dbg"
+package "postgresql-#{node["postgres"]["version"]}-dbg"

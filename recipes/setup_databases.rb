@@ -3,7 +3,7 @@
 # Recipe:: setup_databases
 #
 
-databases = node["postgresql"]["databases"]
+databases = node["postgres"]["databases"]
 
 # setup databases
 databases.each do |db|
